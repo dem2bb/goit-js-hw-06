@@ -2,14 +2,9 @@
 //при этом не должно быть повторяющихся умений и они должны быть отсортированы в алфавитном порядке.
 import users from './users.js';
 const getSortedUniqueSkills = users => {
-  const newArray = users.reduce(function (skills, user) {
-    skills.push(...user.skills);
-    return skills;
-  }, []);
+  const newArray = users.flatMap(user => user.skills);
   return newArray
-    .filter((item, index) => {
-      return newArray.indexOf(item) === index;
-    })
+    .filter((item, index) => newArray.indexOf(item) === index)
     .sort();
 };
 
